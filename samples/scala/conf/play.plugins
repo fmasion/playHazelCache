@@ -1,0 +1,2 @@
+500:playHazelcast.api.HazelcastPlugin
+600:playHazelCache.PlayHazelCachePlugin
