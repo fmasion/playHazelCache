@@ -3,9 +3,11 @@ PlayFramework 2.2.x Hazelcast cache implementation
 
 An implementation of CacheAPI for Play 2.2.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
 
+This cache is cluster wide, distributed and fail-safe (replicated) based on hazelcast distributed hashMap.
+
 ## What's the benefit over play's default cache ?
 
-Play uses ehCache internaly ()if you activate it by adding the `Cache` dependency). [ehCache](http://ehcache.org/) is a great peace of code that ["Go fast and scale"](http://ehcache.org/about/features).
+Play uses ehCache internaly if you activate it by adding the `Cache` dependency). [ehCache](http://ehcache.org/) is a great peace of code that ["Go fast and scale"](http://ehcache.org/about/features).
 
 So why then sould I change for this plugin ?
  
@@ -14,7 +16,7 @@ So why then sould I change for this plugin ?
 Why Shouldn't I use this plugin ?
 
 * Because adding more stuff in my stack is hype…
-* If you have a very big amount of data to store : ehCache stores data off-heap. It allows to store gigabytes without performence and GC problems. This functionality is only available on Hazelcast commercial version for now. ;-( 
+* If you have a very big amount of data to store : ehCache stores data off-heap. It allows to store gigabytes without performence and GC problems. This functionality is only available with Hazelcast `commercial version` for now. ;-( 
 
 ## Cluster wide cache
 
@@ -35,14 +37,14 @@ add this resolver (same for both plugins) :
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "0.1.0"
+	"playhazelcache"  % "playhazelcache_2.10" % "2.6.6"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % "0.2.0"
+	"playHazelcast"  % "playHazelcast_2.10" % "2.6.6"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "0.2.0"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.6"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 
