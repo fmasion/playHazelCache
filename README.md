@@ -37,14 +37,14 @@ add this resolver (same for both plugins) :
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "2.6.6"
+	"playhazelcache"  % "playhazelcache_2.10" % "2.6.7"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % "2.6.6"
+	"playHazelcast"  % "playHazelcast_2.10" % "2.6.7"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.6"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.7"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 
