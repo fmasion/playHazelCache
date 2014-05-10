@@ -1,14 +1,15 @@
+import play.Project._
+
 name := "playHazelCache"
 
-version := "2.6.7"
+version := "3.2.1"
 
 libraryDependencies ++= Seq(
     cache,
-    "playhazelcast"  % "playhazelcast_2.10" % "2.6.7",
-    "playhazelcastclient"  % "playhazelcastclient_2.10" % "2.6.7"
+    "playhazelcast"  % "playhazelcast_2.10" % "3.2.1",
+    "playhazelcastclient"  % "playhazelcastclient_2.10" % "3.2.1"
 )     
 
-  resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
-
+  resolvers += Resolver.file("Local repo", file(System.getProperty("user.home") + "/.ivy2/local"))(Resolver.ivyStylePatterns)
 
   play.Project.playScalaSettings

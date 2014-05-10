@@ -1,7 +1,7 @@
-PlayFramework 2.2.x Hazelcast cache implementation
+PlayFramework 2.3.x Hazelcast cache implementation
 ---------------------------------------
 
-An implementation of CacheAPI for Play 2.2.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
+An implementation of CacheAPI for Play 2.3.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
 
 This cache is cluster wide, distributed and fail-safe (replicated) based on hazelcast distributed hashMap.
 
@@ -31,20 +31,20 @@ In your application, add this configuration to the `project/Build.scala` file :
 
 add this resolver (same for both plugins) :
 
-	resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
-
+	- resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+        currently only resolving locally, code has been provided to fmasion.github.com as a pull request
 
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "2.6.7"
+	"playhazelcache"  % "playhazelcache_2.10" % "3.2.1"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % "2.6.7"
+	"playHazelcast"  % "playHazelcast_2.10" % "3.2.1"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.7"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "3.2.1"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 
