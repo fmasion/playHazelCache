@@ -45,21 +45,13 @@ class PlayHazelCachePlugin(app: Application) extends CachePlugin {
      * @param value Item value.  If value is null remove from cache
      * @param expiration Expiration time in seconds (0 second means eternity).
      */
-    def set(key: String, value: Any, expiration: Int =0) = Option(key)
+    def set(key: String, value: Any, expiration: Int =0) = (Option(key) -> Option(value))
       match {
-        case Some(k) => Option(value) match {
-          case None => remove(key)
-          case Some(_) => client.getMap[String, Any](collectionname).set(key, value, expiration, java.util.concurrent.TimeUnit.SECONDS)
-        }
-        case None => logger.warn("Illegal null key provide, operation ignored and not cached")
+        case (None, _) => logger.warn("Illegal null key provide, operation ignored and not cached")
+        case (Some(k), None) => remove(key)
+        case (Some(k), Some(v)) => client.getMap[String, Any](collectionname).set(key, value, expiration, java.util.concurrent.TimeUnit.SECONDS)
       }
     
-//    def set(key: String, value: Any, expiration: Int = 0) = Option(value) {
-//      if (!key.isEmpty) {
-//        client.getMap[String, Any](collectionname).set(key, value, expiration, java.util.concurrent.TimeUnit.SECONDS)
-//      }
-//    }
-
     def remove(key: String) {
       if (!key.isEmpty) {
         client.getMap[String, Any](collectionname).remove(key)
