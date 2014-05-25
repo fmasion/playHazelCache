@@ -8,6 +8,11 @@ import playHazelcastClient.api.PlayHzClient
 import playHazelcast.api.HazelcastPlugin
 import playHazelcast.api.PlayHz
 
+import reflect.{ ClassTag, ClassManifest }
+import org.apache.commons.lang3.reflect.TypeUtils
+
+import scala.concurrent.duration.Duration
+
 class PlayHazelCachePlugin(app: Application) extends CachePlugin {
 
   lazy val logger = Logger("playHazelCache.PlayHazelCastPlugin")
@@ -19,6 +24,11 @@ class PlayHazelCachePlugin(app: Application) extends CachePlugin {
 
   lazy val api = new CacheAPI {
 
+    /**
+     * Retrieve a value from the cache.
+     *
+     * @param key Item key.
+     */
     def get(key: String) = {
       if (key.isEmpty) {
         None
@@ -28,12 +38,20 @@ class PlayHazelCachePlugin(app: Application) extends CachePlugin {
       }
     }
 
-    def set(key: String, value: Any, expiration: Int) {
-            if (!key.isEmpty) {
-              client.getMap[String, Any](collectionname).set(key, value, expiration, java.util.concurrent.TimeUnit.SECONDS)
-            }
-    }
-
+    /**
+     * Set a value into the cache.
+     *
+     * @param key Item key.
+     * @param value Item value.  If value is null remove from cache
+     * @param expiration Expiration time in seconds (0 second means eternity).
+     */
+    def set(key: String, value: Any, expiration: Int =0) = (Option(key) -> Option(value))
+      match {
+        case (None, _) => logger.warn("Illegal null key provide, operation ignored and not cached")
+        case (Some(k), None) => remove(key)
+        case (Some(k), Some(v)) => client.getMap[String, Any](collectionname).set(key, value, expiration, java.util.concurrent.TimeUnit.SECONDS)
+      }
+    
     def remove(key: String) {
       if (!key.isEmpty) {
         client.getMap[String, Any](collectionname).remove(key)
@@ -57,3 +75,4 @@ class PlayHazelCachePlugin(app: Application) extends CachePlugin {
     logger.info("Stopping PlayHazelCachePlugin.")
   }
 }
+

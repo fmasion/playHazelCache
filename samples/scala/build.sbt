@@ -1,13 +1,19 @@
 name := "playHazelCache-scala-sample"
 
-version := "2.6.7"
+//organization := "com.intelligent-es"
 
-resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+version := "3.2.1"
+
+resolvers += "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
+
+resolvers += Resolver.file("Local repo", file(System.getProperty("user.home") + "/.ivy2/local"))(Resolver.ivyStylePatterns)
 
 libraryDependencies ++= Seq(
-    "playhazelcast"  % "playhazelcast_2.10" % "2.6.7",
-    "playhazelcache"  % "playhazelcache_2.10" % "2.6.7",
+    "playhazelcast"  % "playhazelcast_2.10" % "3.2.1",
+    "playhazelcache"  % "playhazelcache_2.10" % "3.2.1",
     cache
 )     
 
-play.Project.playScalaSettings
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+scalacOptions ++= Seq("-deprecation","-feature")

@@ -1,21 +1,21 @@
-PlayFramework 2.2.x Hazelcast cache implementation
+PlayFramework 2.3.x Hazelcast cache implementation
 ---------------------------------------
 
-An implementation of CacheAPI for Play 2.2.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
+An implementation of CacheAPI for Play 2.3.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
 
 This cache is cluster wide, distributed and fail-safe (replicated) based on hazelcast distributed hashMap.
 
 ## What's the benefit over play's default cache ?
 
-Play uses ehCache internaly if you activate it by adding the `Cache` dependency). [ehCache](http://ehcache.org/) is a great peace of code that ["Go fast and scale"](http://ehcache.org/about/features).
+Play uses ehCache internally if you activate it by adding the `Cache` dependency). [ehCache](http://ehcache.org/) is a great peace of code that ["Go fast and scale"](http://ehcache.org/about/features).
 
-So why then sould I change for this plugin ?
+So why then should I change for this plugin ?
  
  * The main reason is : Because I already use Hazelcast in my architecture. So why would I deploy another piece of code, open more ports on each servers of my cluster for letting an other tool do a subset of what's already provided ?
  
 Why Shouldn't I use this plugin ?
 
-* Because adding more stuff in my stack is hype…
+* Because adding more stuff in my stack is hype
 * If you have a very big amount of data to store : ehCache stores data off-heap. It allows to store gigabytes without performence and GC problems. This functionality is only available with Hazelcast `commercial version` for now. ;-( 
 
 ## Cluster wide cache
@@ -31,20 +31,21 @@ In your application, add this configuration to the `project/Build.scala` file :
 
 add this resolver (same for both plugins) :
 
-	resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
-
+	- resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+        currently only resolving locally, code has been provided to fmasion.github.com as a pull request, it has been excpeted and will be merged into a 3.x version so in the meantime we need to do something like this:
+	resolvers += Resolver.file("Local repo", file(System.getProperty("user.home") + "/.ivy2/local"))(Resolver.ivyStylePatterns)
 
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "2.6.7"
+	"playhazelcache"  % "playhazelcache_2.10" % "3.2.1"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % "2.6.7"
+	"playHazelcast"  % "playHazelcast_2.10" % "3.2.1"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.7"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "3.2.1"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 
@@ -58,17 +59,17 @@ and / or
 	500:playHazelcastClient.api.HazelcastClientPlugin
 	
 	
+~Refer to the Sample applicaiton for usage.
 
-The diferences between the 	two is explained in detail in the [playHazelcast plugin documentation](https://github.com/fmasion/playHazelcast)
+The differences between the two is explained in detail in the [playHazelcast plugin documentation](https://github.com/fmasion/playHazelcast)
 To make it simple it allows your node to be just a client or a participant to the hazelcast cluster.
-The client doesn't own data neither replicat. It only connects to an existing remote hazelcast cluster with all functionality of a node without allocating memory for the shards.
-
+The client doesn't own data neither replicate. It only connects to an existing remote hazelcast cluster with all functionality of a node without allocating memory for the shards.
 	
 	
 Last, in `application.conf`, disable the EhCachePlugin - Play's default implementation of CacheAPI:
 
 ```
-  ehcacheplugin=disabled
+ehcacheplugin=disabled
 ```
 and at the end add this line :
 
