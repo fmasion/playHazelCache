@@ -31,20 +31,20 @@ In your application, add this configuration to the `project/Build.scala` file :
 
 add this resolver (same for both plugins) :
 
-	resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+	resolvers += "bintray" at "http://dl.bintray.com/fmasion/maven"
 
 
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "2.6.7"
+	"playhazelcache"  % "playhazelcache_2.10" % "3.2.3-play2.2"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % "2.6.7"
+	"playHazelcast"  % "playHazelcast_2.10" % 3.2.3-play2.2"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "2.6.7"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "3.2.3-play2.2"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 

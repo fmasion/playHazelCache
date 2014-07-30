@@ -16,6 +16,8 @@ class PlayHazelCachePlugin(app: Application) extends CachePlugin {
   lazy val hzClient: Option[HazelcastInstance] = play.api.Play.current.plugin[HazelcastClientPlugin].flatMap(p => PlayHzClient.getClient)
   lazy val hzInstance: Option[HazelcastInstance] = play.api.Play.current.plugin[HazelcastPlugin].flatMap(p => PlayHz.getInstance)
   lazy val client = hzClient.orElse(hzInstance).get
+  
+  
 
   lazy val api = new CacheAPI {
 

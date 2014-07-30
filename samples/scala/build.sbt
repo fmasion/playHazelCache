@@ -1,12 +1,12 @@
 name := "playHazelCache-scala-sample"
 
-version := "2.6.7"
+version := "3.2.3-play2.2"
 
-resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+resolvers += "bintray" at "http://dl.bintray.com/fmasion/maven"
 
 libraryDependencies ++= Seq(
-    "playhazelcast"  % "playhazelcast_2.10" % "2.6.7",
-    "playhazelcache"  % "playhazelcache_2.10" % "2.6.7",
+    "playhazelcast"  % "playhazelcast_2.10" % "3.2.3-play2.2",
+    "playhazelcache"  % "playhazelcache_2.10" % "3.2.3-play2.2",
     cache
 )     
 
