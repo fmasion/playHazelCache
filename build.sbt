@@ -1,14 +1,14 @@
 name := "playHazelCache"
 
-version := "2.6.7"
+version := "3.2.3"
 
 libraryDependencies ++= Seq(
     cache,
-    "playhazelcast"  % "playhazelcast_2.10" % "2.6.7",
-    "playhazelcastclient"  % "playhazelcastclient_2.10" % "2.6.7"
+    "playhazelcast"  % "playhazelcast_2.10" % "3.2.3-play2.2",
+    "playhazelcastclient"  % "playhazelcastclient_2.10" % "3.2.3-play2.2"
 )     
 
-  resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
+resolvers += Resolver.url("Fred's GitHub Play Repository", url("http://fmasion.github.com/releases/"))(Resolver.ivyStylePatterns)
 
 
-  play.Project.playScalaSettings
+play.Project.playScalaSettings
