@@ -1,7 +1,7 @@
-PlayFramework 2.2.x Hazelcast cache implementation
+PlayFramework 2.3.x Hazelcast cache implementation
 ---------------------------------------
 
-An implementation of CacheAPI for Play 2.2.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
+An implementation of CacheAPI for Play 2.3.x that give you the same usage as play's normal cache plugin but that isn't built on top of ehCache but HazelCast.
 
 This cache is cluster wide, distributed and fail-safe (replicated) based on hazelcast distributed hashMap.
 
@@ -37,14 +37,14 @@ add this resolver (same for both plugins) :
 
 add playHazelCache dependency :
 
-	"playhazelcache"  % "playhazelcache_2.10" % "3.2.3-play2.2"
+	"playhazelcache"  % "playhazelcache_2.10" % "3.2.3-play2.3"
 	
 `Choose one of the following hazelcast dependency :`
 
-	"playHazelcast"  % "playHazelcast_2.10" % 3.2.3-play2.2"
+	"playHazelcast"  % "playHazelcast_2.10" % 3.2.3-play2.3"
 and / or 
 
-	"playHazelcastClient"  % "playHazelcastClient_2.10" % "3.2.3-play2.2"
+	"playHazelcastClient"  % "playHazelcastClient_2.10" % "3.2.3-play2.3"
 	
 In your application, add to `conf/play.plugins` (or create the file if it dosn't exist) this configuration :
 
@@ -168,5 +168,3 @@ Copyright 2013 F. Masion.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this project except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
-
-blah blah blaahhh
